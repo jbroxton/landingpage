@@ -2,50 +2,13 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string | null>(null);
   
-  // Track which section is visible
-  useEffect(() => {
-    // Set initial active section to home
-    setActiveSection('#home');
-    
-    const handleScroll = () => {
-      const sections = ['#home', '#features', '#story', '#contact'];
-      
-      // Check each section's position
-      for (let i = sections.length - 1; i >= 0; i--) {
-        const element = document.querySelector(sections[i]);
-        if (!element) continue;
-        
-        const rect = element.getBoundingClientRect();
-        // Use a more reliable way to check if a section is in view
-        // This prioritizes sections that are closer to the top
-        if (rect.top <= 100) {
-          setActiveSection(sections[i]);
-          return;
-        }
-      }
-      
-      // If no section is detected as active and we're near the top, set home as active
-      if (window.scrollY < 100) {
-        setActiveSection('#home');
-      }
-    };
-    
-    window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check
-    
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <header className="fixed w-full py-6 z-50 transition-all duration-300 bg-[rgba(18,18,18,0.85)] backdrop-blur-md border-b border-[rgba(255,255,255,0.06)] shadow-md">
       <div className="container">
@@ -63,13 +26,8 @@ export default function Header() {
             <span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-gradient-primary rounded-sm transform scale-x-0 origin-left transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] opacity-80 group-hover:scale-x-100"></span>
           </a>
           
-          {/* Desktop Navigation - hidden on smaller screens */}
-          <div className="hidden lg:flex speqq-nav">
-            <NavLink href="#home" isActive={activeSection === '#home' || !activeSection}>Home</NavLink>
-            <NavLink href="#features" isActive={activeSection === '#features'}>Features</NavLink>
-            <NavLink href="#story" isActive={activeSection === '#story'}>Story</NavLink>
-            <NavLink href="#contact" isActive={activeSection === '#contact'}>Contact</NavLink>
-          </div>
+          {/* Empty middle space */}
+          <div className="flex-grow"></div>
           
           {/* Action Buttons */}
           <div className="flex items-center gap-4">
@@ -78,16 +36,15 @@ export default function Header() {
               <Link href="#contact">Join Waitlist</Link>
             </Button>
             
-            {/* Mobile Menu Button - shown on all screens except large and up */}
+            {/* Mobile Menu Button */}
             <button 
-              className="lg:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? (
-                <X size={24} className="text-foreground" />
+                <X size={24} className="text-white" />
               ) : (
-                <Menu size={24} className="text-foreground" />
+                <Menu size={24} className="text-white" />
               )}
             </button>
           </div>
@@ -96,16 +53,16 @@ export default function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <motion.div 
-            className="lg:hidden mt-6 p-4 bg-card rounded-xl border border-border shadow-lg"
+            className="mt-6 p-4 bg-[rgba(25,25,30,0.85)] backdrop-blur-md rounded-xl border border-[rgba(255,255,255,0.1)] shadow-[0_10px_25px_-5px_rgba(0,0,0,0.3)]"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
           >
             <div className="flex flex-col gap-4">
-              <NavLink href="#home" mobile isActive={activeSection === '#home' || !activeSection}>Home</NavLink>
-              <NavLink href="#features" mobile isActive={activeSection === '#features'}>Features</NavLink>
-              <NavLink href="#story" mobile isActive={activeSection === '#story'}>Story</NavLink>
-              <NavLink href="#contact" mobile isActive={activeSection === '#contact'}>Contact</NavLink>
+              <MobileNavLink href="#home">Home</MobileNavLink>
+              <MobileNavLink href="#features">Features</MobileNavLink>
+              <MobileNavLink href="#story">Story</MobileNavLink>
+              <MobileNavLink href="#contact">Contact</MobileNavLink>
             </div>
           </motion.div>
         )}
@@ -114,22 +71,18 @@ export default function Header() {
   );
 }
 
-// Navigation Link component
-function NavLink({ 
+// Mobile Navigation Link component
+function MobileNavLink({ 
   href, 
-  children, 
-  mobile = false,
-  isActive = false 
+  children
 }: { 
   href: string; 
-  children: React.ReactNode; 
-  mobile?: boolean;
-  isActive?: boolean;
+  children: React.ReactNode;
 }) {
   return (
     <a 
       href={href} 
-      className={`${mobile ? 'speqq-mobile-nav-link' : 'speqq-nav-link'} ${isActive ? 'active' : ''}`}
+      className="text-white hover:text-[rgba(127,90,240,1)] py-2 px-3 rounded-md transition-colors duration-300 font-medium text-sm hover:bg-[rgba(255,255,255,0.05)]"
       onClick={(e) => {
         e.preventDefault();
         document.querySelector(href)?.scrollIntoView({

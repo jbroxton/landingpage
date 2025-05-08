@@ -183,6 +183,24 @@
     --border: rgba(255, 255, 255, 0.05);
     --input: rgba(255, 255, 255, 0.1);
   }
+  
+  /* Force text colors in dark mode */
+  .dark h1, .dark h2, .dark h3, .dark h4, .dark h5, .dark h6 {
+    color: white;
+  }
+  
+  .dark p {
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .dark option {
+    background-color: #1e1e1e;
+    color: white;
+  }
+  
+  .dark svg {
+    color: white;
+  }
 }
 
 @layer components {

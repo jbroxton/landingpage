@@ -38,9 +38,9 @@ export default function Home({
   
   // Story content with proper paragraph formatting
   const storyContent = {
-    paragraph1: "Speqq was born from my frustration as a Product Manager. While engineers had GitHub and Jira, and designers had Figma to improve their efficiency, PMs were left cobbling together workflows with generic tools never built for our unique needs.",
-    paragraph2: "During my time in Product at Google, I experienced firsthand how this lack of specialized tooling led to constant misalignment, lost documentation, and painful manual processes. Requirements lived in scattered Google Docs, approvals happened through fragmented channels, and PMs spent countless hours copying specs into tickets.",
-    paragraph3: "Speqq is built to be the tool I wished I had—one that works seamlessly within the existing ecosystem of tools and people while adding the structure, traceability, and alignment the role demands. My mission is to help product teams work smarter by creating a single source of truth where requirements, approvals, and tasks connect effortlessly.",
+    paragraph1: "Speqq is built to be the tool I wished Product Managers had—one that works seamlessly within the existing ecosystem of tools and people while adding the structure, traceability, and alignment the role demands. Essentially, Speqq was born from my first-hand frustration as a Product Manager.",
+    paragraph2: "During my time in Product at Google, I experienced firsthand how the lack of specialized tooling led to constant misalignment, lost documentation, and painful manual processes. While engineers had GitHub and Jira, and designers had Figma to improve their efficiency, PMs were left cobbling together workflows with generic tools never built for our unique needs. Requirements lived in scattered docs, alignment happened through fragmented channels, and PMs spent countless hours searching for historical context for product changes.",
+    paragraph3: "My mission is to help product teams work smarter by creating a single source of truth where requirements, approvals, and tasks connect effortlessly. Speqq doesn't force PMs to abandon their favorite tools or adopt rigid processes. Instead, it enhances familiar workflows with AI assistance, giving back hours previously lost to administrative overhead. We believe technology should adapt to how product teams actually work—not the other way around.",
     paragraph4: "Speqq doesn't force PMs to abandon their favorite tools or adopt rigid processes. Instead, it enhances familiar workflows with AI assistance, giving back hours previously lost to administrative overhead. We believe technology should adapt to how product teams actually work—not the other way around."
   };
   
@@ -104,7 +104,7 @@ export default function Home({
               transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
               className="text-center mb-16 max-w-3xl"
             >
-              <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight tracking-tight whitespace-nowrap">
+              <h1 className="text-3xl md:text-5xl font-bold mb-6 leading-tight tracking-tight whitespace-nowrap text-white">
                 Where <span className="speqq-gradient-text">Product Managers</span> Work
               </h1>
               <p className="text-lg md:text-xl text-gray-300 mb-8 mx-auto">
@@ -267,11 +267,11 @@ export default function Home({
             height="24" 
             viewBox="0 0 24 24" 
             fill="none" 
-            stroke="currentColor" 
+            stroke="white" 
             strokeWidth="2" 
             strokeLinecap="round" 
             strokeLinejoin="round" 
-            className="text-primary animate-bounce"
+            className="text-white animate-bounce"
           >
             <path d="M12 5v14M5 12l7 7 7-7"/>
           </svg>
@@ -564,7 +564,7 @@ export default function Home({
               <div className="space-y-6 text-lg text-left leading-relaxed relative">
                 <p className="font-medium text-white">{storyContent.paragraph1}</p>
                 <p className="text-[rgba(255,255,255,0.95)]">{storyContent.paragraph2}</p>
-                <p className="text-[rgba(255,255,255,0.95)]">{storyContent.paragraph3}</p>
+                <p className="text-[rgba(255,255,255,0.95)]"><span className="text-white font-medium">My mission is to help product teams work smarter</span> by creating a single source of truth where requirements, approvals, and tasks connect effortlessly.</p>
                 <p className="text-[rgba(255,255,255,0.95)]"><span className="text-white font-medium">Speqq doesn&apos;t force PMs to abandon their favorite tools or adopt rigid processes.</span> Instead, it enhances familiar workflows with AI assistance, giving back hours previously lost to administrative overhead. We believe technology should adapt to how product teams actually work—not the other way around.</p>
               </div>
               
@@ -663,7 +663,7 @@ export default function Home({
                       <input 
                         type="email" 
                         id="email" 
-                        className="w-full px-4 py-3 bg-[rgba(30,30,35,0.4)] border border-[rgba(255,255,255,0.1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                        className="w-full px-4 py-3 bg-[rgba(30,30,35,0.4)] text-white placeholder:text-gray-400 border border-[rgba(255,255,255,0.1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                         placeholder="your@email.com"
                       />
                     </div>
@@ -672,7 +672,7 @@ export default function Home({
                       <select 
                         id="role" 
                         defaultValue=""
-                        className="w-full px-4 py-3 bg-[rgba(30,30,35,0.4)] border border-[rgba(255,255,255,0.1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none"
+                        className="w-full px-4 py-3 bg-[rgba(30,30,35,0.4)] text-white border border-[rgba(255,255,255,0.1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none"
                       >
                         <option value="" disabled>Select your role</option>
                         <option value="product_manager">Product Manager</option>
