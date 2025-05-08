@@ -290,7 +290,7 @@ export default function Home({
             {/* Tagline - clean with no background */}
             <div className="mb-0 pb-0">
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight mx-auto text-shadow-lg max-w-3xl mx-auto mb-2">
-                A platform to turn <span className="speqq-gradient-text">ideas into launches</span>, faster is coming
+                A platform to turn <span className="speqq-gradient-text">ideas into launches</span> faster is coming
               </h2>
               
               <p className="text-white text-lg max-w-2xl mx-auto pb-0 mb-0">
