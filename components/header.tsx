@@ -52,10 +52,17 @@ export default function Header() {
       <div className="container">
         <nav className="flex justify-between items-center">
           {/* Logo */}
-          <Link href="/" className="relative group">
+          <a href="#home" className="relative group" onClick={(e) => {
+            e.preventDefault();
+            const homeSection = document.getElementById('home');
+            homeSection?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }}>
             <span className="speqq-logo inline-block">Speqq</span>
             <span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-gradient-primary rounded-sm transform scale-x-0 origin-left transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] opacity-80 group-hover:scale-x-100"></span>
-          </Link>
+          </a>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex speqq-nav">

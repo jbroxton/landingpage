@@ -82,6 +82,7 @@ export default function Home({
       
       {/* Hero Section - Full screen with parallax */}
       <section 
+        id="home"
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center overflow-hidden py-32"
       >
@@ -339,15 +340,13 @@ export default function Home({
                 {/* Content below title */}
                 <div className="text-center max-w-2xl mx-auto relative z-10">
                   {/* Drop cap style statistic with text wrapping */}
-                  <div className="flex items-start mb-4 text-left max-w-2xl mx-auto">
-                    <div className="text-6xl md:text-8xl font-bold leading-none pr-4 mr-2 flex-shrink-0 bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-blue-500">
+                  <div className="relative mb-6 text-left max-w-2xl mx-auto">
+                    <div className="float-left text-6xl md:text-8xl font-bold leading-none pr-3 mr-2 mt-0 mb-1 bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-blue-500">
                       73%
                     </div>
-                    <div className="pt-3">
-                      <p className="text-base text-gray-300 leading-relaxed">
-                        of product managers report AI as their <span className="text-white font-medium">top productivity need</span>. Speqq AI uses advanced learning algorithms to adapt to your workflow and automate routine tasks, enabling you to focus on strategic decisions.
-                      </p>
-                    </div>
+                    <p className="text-base text-gray-300 leading-relaxed">
+                      of product managers report AI as their <span className="text-white font-medium">top productivity need</span>. Speqq AI uses advanced learning algorithms to adapt to your workflow and automate routine tasks, enabling you to focus on strategic decisions.
+                    </p>
                   </div>
                   
                 </div>
@@ -383,15 +382,13 @@ export default function Home({
                 {/* Content below title */}
                 <div className="text-center max-w-2xl mx-auto relative z-10">
                   {/* Drop cap style statistic with text wrapping */}
-                  <div className="flex items-start mb-4 text-left max-w-2xl mx-auto">
-                    <div className="text-6xl md:text-8xl font-bold leading-none pr-4 mr-2 flex-shrink-0 bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-blue-500">
+                  <div className="relative mb-6 text-left max-w-2xl mx-auto">
+                    <div className="float-left text-6xl md:text-8xl font-bold leading-none pr-3 mr-2 mt-0 mb-1 bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-blue-500">
                       9%
                     </div>
-                    <div className="pt-3">
-                      <p className="text-base text-gray-300 leading-relaxed">
-                        of total work time is lost to <span className="text-white font-medium">switching between apps</span>. Seamlessly sync your PRDs from Google Docs and tasks from Jira, eliminating the need to constantly toggle between tools.
-                      </p>
-                    </div>
+                    <p className="text-base text-gray-300 leading-relaxed">
+                      of total work time is lost to <span className="text-white font-medium">switching between apps</span>. Seamlessly sync your PRDs from Google Docs and tasks from Jira, eliminating the need to constantly toggle between tools.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -430,15 +427,13 @@ export default function Home({
                 {/* Content below title */}
                 <div className="text-center max-w-2xl mx-auto relative z-10">
                   {/* Drop cap style statistic with text wrapping */}
-                  <div className="flex items-start mb-4 text-left max-w-2xl mx-auto">
-                    <div className="text-6xl md:text-8xl font-bold leading-none pr-4 mr-2 flex-shrink-0 bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-blue-500">
+                  <div className="relative mb-6 text-left max-w-2xl mx-auto">
+                    <div className="float-left text-6xl md:text-8xl font-bold leading-none pr-3 mr-2 mt-0 mb-1 bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-blue-500">
                       70%
                     </div>
-                    <div className="pt-3">
-                      <p className="text-base text-gray-300 leading-relaxed">
-                        of projects suffer from <span className="text-white font-medium">scope creep</span>. Our structured requirements management helps product managers prevent feature bloat while keeping stakeholders aligned on the product vision.
-                      </p>
-                    </div>
+                    <p className="text-base text-gray-300 leading-relaxed">
+                      of projects suffer from <span className="text-white font-medium">scope creep</span>. Our structured requirements management helps product managers prevent feature bloat while keeping stakeholders aligned on the product vision.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -478,15 +473,13 @@ export default function Home({
                 {/* Content below title */}
                 <div className="text-center max-w-2xl mx-auto relative z-10">
                   {/* Drop cap style statistic with text wrapping */}
-                  <div className="flex items-start mb-4 text-left max-w-2xl mx-auto">
-                    <div className="text-6xl md:text-8xl font-bold leading-none pr-4 mr-2 flex-shrink-0 bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-blue-500">
+                  <div className="relative mb-6 text-left max-w-2xl mx-auto">
+                    <div className="float-left text-6xl md:text-8xl font-bold leading-none pr-3 mr-2 mt-0 mb-1 bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-blue-500">
                       4.6x
                     </div>
-                    <div className="pt-3">
-                      <p className="text-base text-gray-300 leading-relaxed">
-                        <span className="text-white font-medium">more effective and productive</span> are teams that use structured frameworks like OKRs. Speqq&apos;s automated goal tracking keeps your team focused on the metrics that matter and notifies you when targets are hit.
-                      </p>
-                    </div>
+                    <p className="text-base text-gray-300 leading-relaxed">
+                      <span className="text-white font-medium">more effective and productive</span> are teams that use structured frameworks like OKRs. Speqq&apos;s automated goal tracking keeps your team focused on the metrics that matter and notifies you when targets are hit.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -528,15 +521,13 @@ export default function Home({
                 {/* Content below title */}
                 <div className="text-center max-w-2xl mx-auto relative z-10">
                   {/* Drop cap style statistic with text wrapping */}
-                  <div className="flex items-start mb-4 text-left max-w-2xl mx-auto">
-                    <div className="text-6xl md:text-8xl font-bold leading-none pr-4 mr-2 flex-shrink-0 bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-blue-500">
+                  <div className="relative mb-6 text-left max-w-2xl mx-auto">
+                    <div className="float-left text-6xl md:text-8xl font-bold leading-none pr-3 mr-2 mt-0 mb-1 bg-clip-text text-transparent bg-gradient-to-br from-purple-500 to-blue-500">
                       52%
                     </div>
-                    <div className="pt-3">
-                      <p className="text-base text-gray-300 leading-relaxed">
-                        of product managers&apos; time is spent on <span className="text-white font-medium">unplanned firefighting</span> activities. Speqq&apos;s visual roadmapping helps teams stay aligned on priorities while adapting to changing market needs without losing strategic focus.
-                      </p>
-                    </div>
+                    <p className="text-base text-gray-300 leading-relaxed">
+                      of product managers&apos; time is spent on <span className="text-white font-medium">unplanned firefighting</span> activities. Speqq&apos;s visual roadmapping helps teams stay aligned on priorities while adapting to changing market needs without losing strategic focus.
+                    </p>
                   </div>
                 </div>
               </div>

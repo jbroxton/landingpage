@@ -25,6 +25,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      </head>
       <body className={`${inter.variable} antialiased`}>
         <ThemeProvider defaultTheme="dark">
           <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
