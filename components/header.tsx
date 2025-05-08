@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { ThemeToggle } from '@/components/theme/theme-toggle';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -64,8 +63,8 @@ export default function Header() {
             <span className="absolute bottom-[-2px] left-0 w-full h-[2px] bg-gradient-primary rounded-sm transform scale-x-0 origin-left transition-transform duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] opacity-80 group-hover:scale-x-100"></span>
           </a>
           
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex speqq-nav">
+          {/* Desktop Navigation - hidden on smaller screens */}
+          <div className="hidden lg:flex speqq-nav">
             <NavLink href="#home" isActive={activeSection === '#home' || !activeSection}>Home</NavLink>
             <NavLink href="#features" isActive={activeSection === '#features'}>Features</NavLink>
             <NavLink href="#story" isActive={activeSection === '#story'}>Story</NavLink>
@@ -74,17 +73,14 @@ export default function Header() {
           
           {/* Action Buttons */}
           <div className="flex items-center gap-4">
-            {/* Dark Mode Toggle */}
-            <ThemeToggle />
-            
-            {/* CTA Button */}
-            <Button asChild className="hidden md:inline-flex">
+            {/* CTA Button - visible on all screen sizes but smaller on mobile */}
+            <Button asChild className="inline-flex text-xs sm:text-sm md:text-base px-2 py-1 sm:px-3 sm:py-2 md:px-4 md:py-2">
               <Link href="#contact">Join Waitlist</Link>
             </Button>
             
-            {/* Mobile Menu Button */}
+            {/* Mobile Menu Button - shown on all screens except large and up */}
             <button 
-              className="md:hidden"
+              className="lg:hidden"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle menu"
             >
@@ -100,7 +96,7 @@ export default function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <motion.div 
-            className="md:hidden mt-6 p-4 bg-card rounded-xl border border-border shadow-lg"
+            className="lg:hidden mt-6 p-4 bg-card rounded-xl border border-border shadow-lg"
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
@@ -110,9 +106,6 @@ export default function Header() {
               <NavLink href="#features" mobile isActive={activeSection === '#features'}>Features</NavLink>
               <NavLink href="#story" mobile isActive={activeSection === '#story'}>Story</NavLink>
               <NavLink href="#contact" mobile isActive={activeSection === '#contact'}>Contact</NavLink>
-              <Button asChild className="w-full mt-2">
-                <Link href="#contact">Join Waitlist</Link>
-              </Button>
             </div>
           </motion.div>
         )}

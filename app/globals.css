@@ -1,6 +1,13 @@
 @import "tailwindcss";
 
 @layer base {
+  /* xs breakpoint for Tailwind */
+  @media (min-width: 480px) {
+    .xs\:gap-3 {
+      gap: 0.75rem;
+    }
+  }
+  
   /* Responsive base font sizes */
   html {
     font-size: 14px;
@@ -238,6 +245,11 @@
     pointer-events: none;
     z-index: 999999;
     opacity: 0.3;
+  }
+  
+  /* Hide scrollbars for feature icons row */
+  .feature-icons-row::-webkit-scrollbar {
+    display: none;
   }
 
   /* Container */

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -9,13 +8,30 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Speqq - Modern App Solution",
-  description: "Simplify your workflow with Speqq - the all-in-one solution designed to elevate your productivity and streamline complex tasks.",
-  keywords: ["productivity", "workflow", "automation", "analytics", "tools", "integration"],
+  title: "Speqq - Where Product Managers Work",
+  description: "Speqq brings your roadmaps, tasks, and team collaboration into a single, streamlined platform that adapts to how you work.",
+  keywords: ["product management", "roadmaps", "requirements", "product managers", "PM tools", "integration"],
   icons: {
     icon: '/favicon-32x32.png',
     apple: '/apple-touch-icon.png',
   },
+  openGraph: {
+    title: "Speqq - Where Product Managers Work",
+    description: "Speqq brings your roadmaps, tasks, and team collaboration into a single, streamlined platform that adapts to how you work.",
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'Speqq - Where Product Managers Work',
+      }
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: "Speqq - Where Product Managers Work",
+    description: "Speqq brings your roadmaps, tasks, and team collaboration into a single, streamlined platform that adapts to how you work.",
+  }
 };
 
 export default function RootLayout({
@@ -29,11 +45,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
       <body className={`${inter.variable} antialiased`}>
-        <ThemeProvider defaultTheme="dark">
-          <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-            {children}
-          </div>
-        </ThemeProvider>
+        <div className="min-h-screen bg-background text-foreground overflow-x-hidden dark">
+          {children}
+        </div>
       </body>
     </html>
   );

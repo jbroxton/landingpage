@@ -116,36 +116,37 @@ export default function Home({
               
               {/* Feature icons in a row - moved from features section */}
               <motion.div
-                className="flex flex-wrap justify-center gap-3 md:gap-5 max-w-4xl mx-auto mb-0 -mt-10 relative"
+                className="flex flex-nowrap overflow-x-auto justify-center gap-2 xs:gap-3 md:gap-5 max-w-4xl mx-auto mb-0 -mt-10 relative pb-2 px-1 feature-icons-row"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, ease: [0.215, 0.61, 0.355, 1] }}
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
                 
                 {/* Speqq AI */}
-                <div className="flex flex-col items-center text-center hover:bg-white/5 rounded-lg p-2 transition-all duration-300 group cursor-pointer">
-                  <div className="w-14 h-14 rounded-xl bg-[rgba(35,35,40,0.25)] backdrop-blur-xl border border-[rgba(255,255,255,0.2)] flex items-center justify-center mb-1 shadow-[0_8px_12px_-6px_rgba(0,0,0,0.2),0_0_4px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_20px_rgba(127,90,240,0.4)] transition-all duration-300 group-hover:scale-105 group-hover:border-[rgba(127,90,240,0.4)] group-hover:bg-[rgba(40,40,50,0.35)] relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/10 before:to-transparent before:rounded-xl before:opacity-50">
+                <div className="flex flex-col items-center text-center hover:bg-white/5 rounded-lg p-2 transition-all duration-300 group cursor-pointer flex-shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-[rgba(35,35,40,0.25)] backdrop-blur-xl border border-[rgba(255,255,255,0.2)] flex items-center justify-center mb-1 shadow-[0_8px_12px_-6px_rgba(0,0,0,0.2),0_0_4px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_20px_rgba(127,90,240,0.4)] transition-all duration-300 group-hover:scale-105 group-hover:border-[rgba(127,90,240,0.4)] group-hover:bg-[rgba(40,40,50,0.35)] relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/10 before:to-transparent before:rounded-xl before:opacity-50">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[rgba(255,255,255,0.95)] drop-shadow-[0_0_3px_rgba(127,90,240,0.5)]">
                       <path d="M6.9 9c-.16-.6-.44-1.16-.82-1.65A5.97 5.97 0 0 1 13 4a5.98 5.98 0 0 1 5.83 4.5 5.96 5.96 0 0 1 1.77 10.57A5.98 5.98 0 0 1 15 22a5.39 5.39 0 0 1-1.82-.31 5.96 5.96 0 0 1-7.08-3.27 6 6 0 0 1 .8-9.42Z"/>
                       <path d="m12 8-2 4h4l-2 4"/>
                     </svg>
                   </div>
-                  <p className="text-xs md:text-sm font-medium text-gray-300 group-hover:text-white transition-all duration-300 group-hover:drop-shadow-[0_0_3px_rgba(127,90,240,0.8)]">Speqq AI</p>
+                  <p className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 group-hover:text-white transition-all duration-300 group-hover:drop-shadow-[0_0_3px_rgba(127,90,240,0.8)] whitespace-nowrap">Speqq AI</p>
                 </div>
                 
                 {/* Integrations */}
-                <div className="flex flex-col items-center text-center hover:bg-white/5 rounded-lg p-2 transition-all duration-300 group cursor-pointer">
-                  <div className="w-14 h-14 rounded-xl bg-[rgba(35,35,40,0.25)] backdrop-blur-xl border border-[rgba(255,255,255,0.2)] flex items-center justify-center mb-1 shadow-[0_8px_12px_-6px_rgba(0,0,0,0.2),0_0_4px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_20px_rgba(127,90,240,0.4)] transition-all duration-300 group-hover:scale-105 group-hover:border-[rgba(127,90,240,0.4)] group-hover:bg-[rgba(40,40,50,0.35)] relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/10 before:to-transparent before:rounded-xl before:opacity-50">
+                <div className="flex flex-col items-center text-center hover:bg-white/5 rounded-lg p-2 transition-all duration-300 group cursor-pointer flex-shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-[rgba(35,35,40,0.25)] backdrop-blur-xl border border-[rgba(255,255,255,0.2)] flex items-center justify-center mb-1 shadow-[0_8px_12px_-6px_rgba(0,0,0,0.2),0_0_4px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_20px_rgba(127,90,240,0.4)] transition-all duration-300 group-hover:scale-105 group-hover:border-[rgba(127,90,240,0.4)] group-hover:bg-[rgba(40,40,50,0.35)] relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/10 before:to-transparent before:rounded-xl before:opacity-50">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[rgba(255,255,255,0.95)] drop-shadow-[0_0_3px_rgba(127,90,240,0.5)]">
                       <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38"/>
                     </svg>
                   </div>
-                  <p className="text-xs md:text-sm font-medium text-gray-300 group-hover:text-white transition-all duration-300 group-hover:drop-shadow-[0_0_3px_rgba(127,90,240,0.8)]">Integrations</p>
+                  <p className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 group-hover:text-white transition-all duration-300 group-hover:drop-shadow-[0_0_3px_rgba(127,90,240,0.8)] whitespace-nowrap">Integrations</p>
                 </div>
                 
                 {/* Requirements */}
-                <div className="flex flex-col items-center text-center hover:bg-white/5 rounded-lg p-2 transition-all duration-300 group cursor-pointer">
-                  <div className="w-14 h-14 rounded-xl bg-[rgba(35,35,40,0.25)] backdrop-blur-xl border border-[rgba(255,255,255,0.2)] flex items-center justify-center mb-1 shadow-[0_8px_12px_-6px_rgba(0,0,0,0.2),0_0_4px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_20px_rgba(127,90,240,0.4)] transition-all duration-300 group-hover:scale-105 group-hover:border-[rgba(127,90,240,0.4)] group-hover:bg-[rgba(40,40,50,0.35)] relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/10 before:to-transparent before:rounded-xl before:opacity-50">
+                <div className="flex flex-col items-center text-center hover:bg-white/5 rounded-lg p-2 transition-all duration-300 group cursor-pointer flex-shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-[rgba(35,35,40,0.25)] backdrop-blur-xl border border-[rgba(255,255,255,0.2)] flex items-center justify-center mb-1 shadow-[0_8px_12px_-6px_rgba(0,0,0,0.2),0_0_4px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_20px_rgba(127,90,240,0.4)] transition-all duration-300 group-hover:scale-105 group-hover:border-[rgba(127,90,240,0.4)] group-hover:bg-[rgba(40,40,50,0.35)] relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/10 before:to-transparent before:rounded-xl before:opacity-50">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[rgba(255,255,255,0.95)] drop-shadow-[0_0_3px_rgba(127,90,240,0.5)]">
                       <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
                       <path d="M14 2v6h6"/>
@@ -154,12 +155,12 @@ export default function Home({
                       <path d="M10 9H8"/>
                     </svg>
                   </div>
-                  <p className="text-xs md:text-sm font-medium text-gray-300 group-hover:text-white transition-all duration-300 group-hover:drop-shadow-[0_0_3px_rgba(127,90,240,0.8)]">Requirements</p>
+                  <p className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 group-hover:text-white transition-all duration-300 group-hover:drop-shadow-[0_0_3px_rgba(127,90,240,0.8)] whitespace-nowrap">Requirements</p>
                 </div>
                 
                 {/* Roadmaps */}
-                <div className="flex flex-col items-center text-center hover:bg-white/5 rounded-lg p-2 transition-all duration-300 group cursor-pointer">
-                  <div className="w-14 h-14 rounded-xl bg-[rgba(35,35,40,0.25)] backdrop-blur-xl border border-[rgba(255,255,255,0.2)] flex items-center justify-center mb-1 shadow-[0_8px_12px_-6px_rgba(0,0,0,0.2),0_0_4px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_20px_rgba(127,90,240,0.4)] transition-all duration-300 group-hover:scale-105 group-hover:border-[rgba(127,90,240,0.4)] group-hover:bg-[rgba(40,40,50,0.35)] relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/10 before:to-transparent before:rounded-xl before:opacity-50">
+                <div className="flex flex-col items-center text-center hover:bg-white/5 rounded-lg p-2 transition-all duration-300 group cursor-pointer flex-shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-[rgba(35,35,40,0.25)] backdrop-blur-xl border border-[rgba(255,255,255,0.2)] flex items-center justify-center mb-1 shadow-[0_8px_12px_-6px_rgba(0,0,0,0.2),0_0_4px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_20px_rgba(127,90,240,0.4)] transition-all duration-300 group-hover:scale-105 group-hover:border-[rgba(127,90,240,0.4)] group-hover:bg-[rgba(40,40,50,0.35)] relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/10 before:to-transparent before:rounded-xl before:opacity-50">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[rgba(255,255,255,0.95)] drop-shadow-[0_0_3px_rgba(127,90,240,0.5)]">
                       <path d="M3 7h4"/>
                       <path d="M7 7v13"/>
@@ -171,12 +172,12 @@ export default function Home({
                       <path d="M20 20v-8"/>
                     </svg>
                   </div>
-                  <p className="text-xs md:text-sm font-medium text-gray-300 group-hover:text-white transition-all duration-300 group-hover:drop-shadow-[0_0_3px_rgba(127,90,240,0.8)]">Roadmaps</p>
+                  <p className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 group-hover:text-white transition-all duration-300 group-hover:drop-shadow-[0_0_3px_rgba(127,90,240,0.8)] whitespace-nowrap">Roadmaps</p>
                 </div>
                 
                 {/* Goals */}
-                <div className="flex flex-col items-center text-center hover:bg-white/5 rounded-lg p-2 transition-all duration-300 group cursor-pointer">
-                  <div className="w-14 h-14 rounded-xl bg-[rgba(35,35,40,0.25)] backdrop-blur-xl border border-[rgba(255,255,255,0.2)] flex items-center justify-center mb-1 shadow-[0_8px_12px_-6px_rgba(0,0,0,0.2),0_0_4px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_20px_rgba(127,90,240,0.4)] transition-all duration-300 group-hover:scale-105 group-hover:border-[rgba(127,90,240,0.4)] group-hover:bg-[rgba(40,40,50,0.35)] relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/10 before:to-transparent before:rounded-xl before:opacity-50">
+                <div className="flex flex-col items-center text-center hover:bg-white/5 rounded-lg p-2 transition-all duration-300 group cursor-pointer flex-shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-[rgba(35,35,40,0.25)] backdrop-blur-xl border border-[rgba(255,255,255,0.2)] flex items-center justify-center mb-1 shadow-[0_8px_12px_-6px_rgba(0,0,0,0.2),0_0_4px_rgba(255,255,255,0.1)] group-hover:shadow-[0_0_20px_rgba(127,90,240,0.4)] transition-all duration-300 group-hover:scale-105 group-hover:border-[rgba(127,90,240,0.4)] group-hover:bg-[rgba(40,40,50,0.35)] relative before:absolute before:inset-0 before:bg-gradient-to-b before:from-white/10 before:to-transparent before:rounded-xl before:opacity-50">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[rgba(255,255,255,0.95)] drop-shadow-[0_0_3px_rgba(127,90,240,0.5)]">
                       <path d="M2 12h20"/>
                       <path d="M10 2v20"/>
@@ -186,7 +187,7 @@ export default function Home({
                       <path d="m4.5 15 2.5 2.5"/>
                     </svg>
                   </div>
-                  <p className="text-xs md:text-sm font-medium text-gray-300 group-hover:text-white transition-all duration-300 group-hover:drop-shadow-[0_0_3px_rgba(127,90,240,0.8)]">Goals</p>
+                  <p className="text-[10px] sm:text-xs md:text-sm font-medium text-gray-300 group-hover:text-white transition-all duration-300 group-hover:drop-shadow-[0_0_3px_rgba(127,90,240,0.8)] whitespace-nowrap">Goals</p>
                 </div>
               </motion.div>
               
