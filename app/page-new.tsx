@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -75,6 +75,64 @@ export default function Home({
       description: "Organize and prioritize your product requirements with powerful tools designed specifically for product managers."
     }
   ];
+
+  // For form handling
+  const [email, setEmail] = useState('');
+  const [role, setRole] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | 'none';
+    message: string;
+  }>({ type: 'none', message: '' });
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Basic validation
+    if (!email) {
+      setSubmitStatus({
+        type: 'error',
+        message: 'Please enter your email address'
+      });
+      return;
+    }
+    
+    setIsSubmitting(true);
+    setSubmitStatus({ type: 'none', message: '' });
+    
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, role }),
+      });
+      
+      const data = await response.json();
+      
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to join waitlist');
+      }
+      
+      // Success
+      setSubmitStatus({
+        type: 'success',
+        message: 'Thanks for joining our waitlist!'
+      });
+      setEmail('');
+      setRole('');
+    } catch (error) {
+      console.error('Error:', error);
+      setSubmitStatus({
+        type: 'error',
+        message: error instanceof Error ? error.message : 'Something went wrong. Please try again.'
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <main className="min-h-screen bg-[#0A0A0B]">
@@ -657,21 +715,25 @@ export default function Home({
                 
                 {/* Right side form */}
                 <div>
-                  <form className="space-y-4">
+                  <form className="space-y-4" onSubmit={handleSubmit}>
                     <div>
                       <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">Email</label>
                       <input 
                         type="email" 
                         id="email" 
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
                         className="w-full px-4 py-3 bg-[rgba(30,30,35,0.4)] text-white placeholder:text-gray-400 border border-[rgba(255,255,255,0.1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                         placeholder="your@email.com"
+                        required
                       />
                     </div>
                     <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">Your Role</label>
+                      <label htmlFor="role" className="block text-sm font-medium text-gray-300 mb-1">Your Role</label>
                       <select 
                         id="role" 
-                        defaultValue=""
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
                         className="w-full px-4 py-3 bg-[rgba(30,30,35,0.4)] text-white border border-[rgba(255,255,255,0.1)] rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none"
                       >
                         <option value="" disabled>Select your role</option>
@@ -682,8 +744,22 @@ export default function Home({
                         <option value="other">Other</option>
                       </select>
                     </div>
+                    
+                    {/* Status message */}
+                    {submitStatus.type !== 'none' && (
+                      <div className={`text-sm px-3 py-2 rounded ${submitStatus.type === 'success' ? 'bg-green-500/20 text-green-300' : 'bg-red-500/20 text-red-300'}`}>
+                        {submitStatus.message}
+                      </div>
+                    )}
+                    
                     <div className="pt-2">
-                      <Button className="w-full py-6 text-lg font-semibold animate-pulse">Join Waitlist</Button>
+                      <Button 
+                        type="submit"
+                        className={`w-full py-6 text-lg font-semibold ${isSubmitting ? 'opacity-70' : 'animate-pulse'}`}
+                        disabled={isSubmitting}
+                      >
+                        {isSubmitting ? 'Processing...' : 'Join Waitlist'}
+                      </Button>
                     </div>
                   </form>
                 </div>

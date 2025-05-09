@@ -1,36 +1,65 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Speqq Landing Page
 
-## Getting Started
+A landing page for Speqq - a platform for product managers to turn ideas into launches faster.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Modern UI built with Next.js 14 and React
+- Animated components using Framer Motion
+- Form handling with database integration
+- Responsive design for all device sizes
+- Waitlist email collection
+
+## Deployment with Vercel
+
+This project is configured to work with Vercel deployment and Neon PostgreSQL.
+
+### Prerequisites
+
+- A Vercel account
+- A Neon PostgreSQL database
+
+### Environment Variables
+
+Add the following environment variables in your Vercel project settings:
+
+```
+POSTGRES_URL=your_neon_connection_string
+POSTGRES_USER=your_neon_user
+POSTGRES_HOST=your_neon_host
+POSTGRES_PASSWORD=your_neon_password
+POSTGRES_DATABASE=your_neon_database
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Deploy
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Push your code to a GitHub repository
+2. Import the project in Vercel
+3. Add the environment variables
+4. Deploy!
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Development
 
-## Learn More
+For local development:
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository
+2. Create a `.env.local` file with your Neon database credentials
+3. Install dependencies with `npm install`
+4. Run the development server with `npm run dev`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Database Setup
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The database table is automatically created when the first form submission is made. It creates:
 
-## Deploy on Vercel
+```sql
+CREATE TABLE IF NOT EXISTS waitlist (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  role VARCHAR(100),
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Data Export
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To export your waitlist data, you can use the Neon database interface or connect using any PostgreSQL client.
