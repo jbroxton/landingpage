@@ -82,7 +82,7 @@ export default function EditStudyPage() {
     })
       .then(response => {
         if (response.ok) {
-          router.push('/');
+          router.push('/admin');
         } else {
           throw new Error('Failed to save study');
         }
@@ -271,7 +271,7 @@ export default function EditStudyPage() {
           <Button
             type="button"
             variant="outline"
-            onClick={() => router.push('/')}
+            onClick={() => router.push('/admin')}
             className="border-[rgba(255,255,255,0.2)] text-white hover:bg-[rgba(255,255,255,0.1)]"
           >
             Cancel

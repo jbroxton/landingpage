@@ -22,7 +22,7 @@ export default function AdminLayout({
       const savedAuth = localStorage.getItem('adminAuth');
       
       if (!savedAuth) {
-        router.push('/login');
+        router.push('/admin/login');
         return;
       }
       
@@ -36,10 +36,10 @@ export default function AdminLayout({
       } else {
         // Invalid credentials, clear and redirect to login
         localStorage.removeItem('adminAuth');
-        router.push('/login');
+        router.push('/admin/login');
       }
     } catch {
-      router.push('/login');
+      router.push('/admin/login');
     } finally {
       setIsLoading(false);
     }
@@ -55,7 +55,7 @@ export default function AdminLayout({
 
   const handleLogout = () => {
     localStorage.removeItem('adminAuth');
-    router.push('/login');
+    router.push('/admin/login');
   };
 
   // Show login page without the admin header
@@ -82,14 +82,14 @@ export default function AdminLayout({
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-8">
-              <Link href="/" className="text-xl font-bold text-white">
+              <Link href="/admin" className="text-xl font-bold text-white">
                 Speqq Admin
               </Link>
               <nav className="hidden md:flex space-x-6">
-                <Link href="/" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/admin" className="text-gray-300 hover:text-white transition-colors">
                   Studies
                 </Link>
-                <Link href="/signups" className="text-gray-300 hover:text-white transition-colors">
+                <Link href="/admin/signups" className="text-gray-300 hover:text-white transition-colors">
                   All Signups
                 </Link>
               </nav>

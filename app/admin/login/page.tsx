@@ -34,7 +34,7 @@ export default function AdminLoginPage() {
       if (response.ok) {
         // Save credentials and redirect
         localStorage.setItem('adminAuth', credentials);
-        router.push('/');
+        router.push('/admin');
       } else {
         setError('Invalid username or password');
       }

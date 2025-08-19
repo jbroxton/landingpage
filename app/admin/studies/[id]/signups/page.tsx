@@ -118,7 +118,7 @@ export default function StudySignupsPage() {
         <div>
           <Button
             variant="ghost"
-            onClick={() => router.push('/')}
+            onClick={() => router.push('/admin')}
             className="text-gray-400 hover:text-white mb-2 -ml-2"
           >
             ← Back to Studies
