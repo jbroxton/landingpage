@@ -78,6 +78,15 @@ export async function createStudy(input: CreateStudyInput) {
 }
 
 export async function updateStudy(id: number, input: CreateStudyInput) {
+  // Debug logging
+  console.log('updateStudy input:', {
+    id,
+    start_date: input.start_date,
+    end_date: input.end_date,
+    start_date_value: !input.start_date || input.start_date === '' ? null : input.start_date,
+    end_date_value: !input.end_date || input.end_date === '' ? null : input.end_date,
+  });
+  
   const result = await sql<Study>`
     UPDATE studies
     SET 
@@ -94,6 +103,13 @@ export async function updateStudy(id: number, input: CreateStudyInput) {
     WHERE id = ${id}
     RETURNING *
   `;
+  
+  console.log('updateStudy result:', {
+    id: result.rows[0]?.id,
+    start_date: result.rows[0]?.start_date,
+    end_date: result.rows[0]?.end_date,
+  });
+  
   return result.rows[0] || null;
 }
 

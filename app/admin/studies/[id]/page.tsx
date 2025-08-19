@@ -19,6 +19,7 @@ export default function EditStudyPage() {
 
   const [isLoading, setIsLoading] = useState(!isNew);
   const [isSaving, setIsSaving] = useState(false);
+  const [saveMessage, setSaveMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
   const [formData, setFormData] = useState<CreateStudyInput>({
     name: '',
     description: '',
@@ -43,6 +44,12 @@ export default function EditStudyPage() {
           throw new Error('Failed to fetch study');
         })
         .then((study: Study) => {
+          // Format dates for HTML date input (needs YYYY-MM-DD format)
+          const formatDateForInput = (dateStr: string | null) => {
+            if (!dateStr) return '';
+            return dateStr.split('T')[0]; // Get just the YYYY-MM-DD part
+          };
+          
           setFormData({
             name: study.name,
             description: study.description,
@@ -51,8 +58,8 @@ export default function EditStudyPage() {
             status: study.status,
             participant_limit: study.participant_limit || undefined,
             calendly_link: study.calendly_link || '',
-            start_date: study.start_date || '',
-            end_date: study.end_date || '',
+            start_date: formatDateForInput(study.start_date),
+            end_date: formatDateForInput(study.end_date),
           });
         })
         .catch(error => {
@@ -64,35 +71,76 @@ export default function EditStudyPage() {
     }
   }, [studyId, isNew]);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
+    setSaveMessage({ type: 'success', text: 'Saving...' });
 
     const url = isNew 
       ? '/api/admin/studies' 
       : `/api/admin/studies/${studyId}`;
     
-    fetch(url, {
-      method: isNew ? 'POST' : 'PUT',
-      headers: {
-        ...getClientAuthHeaders(),
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    })
-      .then(response => {
-        if (response.ok) {
-          router.push('/admin');
-        } else {
-          throw new Error('Failed to save study');
-        }
-      })
-      .catch(error => {
-        console.error('Error saving study:', error);
-      })
-      .finally(() => {
-        setIsSaving(false);
+    try {
+      const response = await fetch(url, {
+        method: isNew ? 'POST' : 'PUT',
+        headers: {
+          ...getClientAuthHeaders(),
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
+
+      if (response.ok) {
+        const updatedStudy = await response.json();
+        
+        // Verify the dates were saved correctly (compare just the date part)
+        const formatDateForComparison = (dateStr: string | null) => {
+          if (!dateStr) return null;
+          return dateStr.split('T')[0]; // Get just the YYYY-MM-DD part
+        };
+        
+        const datesMatch = 
+          (formData.start_date === '' ? !updatedStudy.start_date : formatDateForComparison(updatedStudy.start_date) === formData.start_date) &&
+          (formData.end_date === '' ? !updatedStudy.end_date : formatDateForComparison(updatedStudy.end_date) === formData.end_date);
+        
+        if (!datesMatch) {
+          setSaveMessage({
+            type: 'error',
+            text: `Warning: Dates may not have saved correctly. 
+                   Sent start: ${formData.start_date || 'none'}, Saved: ${updatedStudy.start_date || 'none'}
+                   Sent end: ${formData.end_date || 'none'}, Saved: ${updatedStudy.end_date || 'none'}`
+          });
+          
+          // Reload the study data to show what's actually in the database
+          setTimeout(() => {
+            if (!isNew) {
+              window.location.reload();
+            }
+          }, 3000);
+        } else {
+          setSaveMessage({
+            type: 'success',
+            text: isNew ? 'Study created successfully!' : 'Study updated successfully!'
+          });
+          
+          // Redirect after showing success message
+          setTimeout(() => {
+            router.push('/admin');
+          }, 1500);
+        }
+      } else {
+        const errorText = await response.text();
+        throw new Error(`Failed to save study: ${errorText}`);
+      }
+    } catch (error) {
+      console.error('Error saving study:', error);
+      setSaveMessage({
+        type: 'error',
+        text: `Failed to save study: ${error instanceof Error ? error.message : 'Unknown error'}`
+      });
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   if (isLoading) {
@@ -114,6 +162,17 @@ export default function EditStudyPage() {
           {isNew ? 'Create a new UX research study' : 'Update study details'}
         </p>
       </div>
+
+      {/* Validation Message */}
+      {saveMessage && (
+        <div className={`p-4 rounded-lg border ${
+          saveMessage.type === 'success' 
+            ? 'bg-green-500/10 border-green-500/30 text-green-300' 
+            : 'bg-red-500/10 border-red-500/30 text-red-300'
+        }`}>
+          <pre className="whitespace-pre-wrap font-mono text-sm">{saveMessage.text}</pre>
+        </div>
+      )}
 
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-6">
