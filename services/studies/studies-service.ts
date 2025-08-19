@@ -28,8 +28,6 @@ export async function getPublishedStudies() {
     FROM studies s
     LEFT JOIN study_signups ss ON s.id = ss.study_id
     WHERE s.status = 'published'
-      AND (s.start_date IS NULL OR s.start_date <= CURRENT_DATE)
-      AND (s.end_date IS NULL OR s.end_date >= CURRENT_DATE)
     GROUP BY s.id
     ORDER BY s.created_at DESC
   `;
