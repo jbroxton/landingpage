@@ -70,7 +70,7 @@ export default function StudiesPage() {
               <div className="bg-[rgba(20,20,25,0.25)] backdrop-blur-md rounded-xl border border-[rgba(255,255,255,0.12)] p-12 max-w-2xl mx-auto">
                 <h2 className="text-2xl font-semibold text-white mb-4">No Studies Available</h2>
                 <p className="text-gray-400 mb-8">
-                  We don't have any active studies at the moment. Check back soon or join our waitlist to be notified when new studies are available.
+                  We don&apos;t have any active studies at the moment. Check back soon or join our waitlist to be notified when new studies are available.
                 </p>
                 <Button
                   onClick={() => router.push('/#contact')}
@@ -113,7 +113,7 @@ export default function StudiesPage() {
                           <MapPin className="w-4 h-4 mr-2 text-purple-400" />
                           <span>{study.location}</span>
                         </div>
-                        {study.spots_remaining !== null && study.spots_remaining > 0 && (
+                        {study.spots_remaining !== null && study.spots_remaining !== undefined && study.spots_remaining > 0 && (
                           <div className="flex items-center text-sm text-gray-300">
                             <Clock className="w-4 h-4 mr-2 text-purple-400" />
                             <span>{study.spots_remaining} spots remaining</span>

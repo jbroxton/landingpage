@@ -17,7 +17,7 @@ import { Study } from '@/services/studies/types';
 import { ROLES, COMPANY_SIZES, YEARS_EXPERIENCE } from '@/services/studies/constants';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
-import { ArrowLeft, Calendar, MapPin, Users } from 'lucide-react';
+import { ArrowLeft, MapPin, Users } from 'lucide-react';
 
 // Form validation schema
 const formSchema = z.object({
@@ -53,8 +53,7 @@ export default function StudyDetailPage() {
     handleSubmit,
     formState: { errors },
     setValue,
-    watch,
-    reset
+    watch
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -73,6 +72,7 @@ export default function StudyDetailPage() {
 
   useEffect(() => {
     fetchStudy();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studyId]);
 
   const fetchStudy = async () => {
@@ -126,7 +126,7 @@ export default function StudyDetailPage() {
           message: responseData.error || 'Failed to sign up. Please try again.'
         });
       }
-    } catch (error) {
+    } catch {
       setSubmitStatus({
         type: 'error',
         message: 'Something went wrong. Please try again.'
@@ -188,7 +188,7 @@ export default function StudyDetailPage() {
                         <MapPin className="w-3 h-3 mr-1" />
                         {study.location}
                       </Badge>
-                      {study.spots_remaining !== null && (
+                      {study.spots_remaining !== null && study.spots_remaining !== undefined && (
                         <Badge 
                           variant="outline" 
                           className={study.spots_remaining > 0 
@@ -425,62 +425,6 @@ export default function StudyDetailPage() {
               </motion.div>
             )}
 
-            {/* Remove the separate Calendly Embed section */}
-            {false && showCalendly && study.calendly_link && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-              >
-                <Card className="bg-[rgba(20,20,25,0.25)] backdrop-blur-md border-[rgba(255,255,255,0.12)]">
-                  <CardHeader>
-                    <CardTitle className="text-2xl text-white">Schedule Your Session</CardTitle>
-                    <CardDescription className="text-gray-400">
-                      Please select a time that works best for you
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent>
-                    <div className="rounded-lg overflow-hidden">
-                      <InlineWidget
-                        url={study.calendly_link}
-                        styles={{
-                          height: '700px',
-                          minWidth: '320px',
-                        }}
-                        prefill={{
-                          email: formData.email,
-                          firstName: formData.first_name,
-                          lastName: formData.last_name,
-                          name: `${formData.first_name} ${formData.last_name}`,
-                          customAnswers: {
-                            a1: formData.company_name,
-                            a2: formData.role,
-                          }
-                        }}
-                      />
-                    </div>
-                    <div className="mt-6 flex gap-4">
-                      <Button
-                        onClick={() => {
-                          setShowCalendly(false);
-                          setShowSignupForm(false);
-                        }}
-                        variant="outline"
-                        className="border-[rgba(255,255,255,0.2)] text-white hover:bg-[rgba(255,255,255,0.1)]"
-                      >
-                        Back to Study
-                      </Button>
-                      <Button
-                        onClick={() => router.push('/studies')}
-                        className="bg-purple-600 hover:bg-purple-700"
-                      >
-                        View All Studies
-                      </Button>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            )}
           </motion.div>
         </div>
       </section>

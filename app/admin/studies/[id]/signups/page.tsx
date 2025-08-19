@@ -24,36 +24,43 @@ export default function StudySignupsPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    fetchData();
-  }, [studyId]);
-
-  const fetchData = async () => {
-    try {
-      // Fetch study details
-      const studyResponse = await fetch(`/api/admin/studies/${studyId}`, {
-        headers: getClientAuthHeaders(),
-      });
-      
-      if (studyResponse.ok) {
-        const studyData = await studyResponse.json();
+    // Fetch study details
+    fetch(`/api/admin/studies/${studyId}`, {
+      headers: getClientAuthHeaders(),
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Failed to fetch study');
+      })
+      .then(studyData => {
         setStudy(studyData);
-      }
-
-      // Fetch signups
-      const signupsResponse = await fetch(`/api/admin/studies/${studyId}/signups`, {
-        headers: getClientAuthHeaders(),
+      })
+      .catch(error => {
+        console.error('Error fetching study:', error);
       });
-      
-      if (signupsResponse.ok) {
-        const signupsData = await signupsResponse.json();
+
+    // Fetch signups
+    fetch(`/api/admin/studies/${studyId}/signups`, {
+      headers: getClientAuthHeaders(),
+    })
+      .then(response => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error('Failed to fetch signups');
+      })
+      .then(signupsData => {
         setSignups(signupsData);
-      }
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
+      })
+      .catch(error => {
+        console.error('Error fetching signups:', error);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }, [studyId]);
 
   const exportToCSV = () => {
     const headers = [

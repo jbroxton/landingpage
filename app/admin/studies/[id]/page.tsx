@@ -33,63 +33,66 @@ export default function EditStudyPage() {
 
   useEffect(() => {
     if (!isNew) {
-      fetchStudy();
-    }
-  }, [studyId]);
-
-  const fetchStudy = async () => {
-    try {
-      const response = await fetch(`/api/admin/studies/${studyId}`, {
+      fetch(`/api/admin/studies/${studyId}`, {
         headers: getClientAuthHeaders(),
-      });
-      
-      if (response.ok) {
-        const study: Study = await response.json();
-        setFormData({
-          name: study.name,
-          description: study.description,
-          user_type: study.user_type,
-          location: study.location,
-          status: study.status,
-          participant_limit: study.participant_limit || undefined,
-          calendly_link: study.calendly_link || '',
-          start_date: study.start_date || '',
-          end_date: study.end_date || '',
+      })
+        .then(response => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error('Failed to fetch study');
+        })
+        .then((study: Study) => {
+          setFormData({
+            name: study.name,
+            description: study.description,
+            user_type: study.user_type,
+            location: study.location,
+            status: study.status,
+            participant_limit: study.participant_limit || undefined,
+            calendly_link: study.calendly_link || '',
+            start_date: study.start_date || '',
+            end_date: study.end_date || '',
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching study:', error);
+        })
+        .finally(() => {
+          setIsLoading(false);
         });
-      }
-    } catch (error) {
-      console.error('Error fetching study:', error);
-    } finally {
-      setIsLoading(false);
     }
-  };
+  }, [studyId, isNew]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSaving(true);
 
-    try {
-      const url = isNew 
-        ? '/api/admin/studies' 
-        : `/api/admin/studies/${studyId}`;
-      
-      const response = await fetch(url, {
-        method: isNew ? 'POST' : 'PUT',
-        headers: {
-          ...getClientAuthHeaders(),
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+    const url = isNew 
+      ? '/api/admin/studies' 
+      : `/api/admin/studies/${studyId}`;
+    
+    fetch(url, {
+      method: isNew ? 'POST' : 'PUT',
+      headers: {
+        ...getClientAuthHeaders(),
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then(response => {
+        if (response.ok) {
+          router.push('/admin');
+        } else {
+          throw new Error('Failed to save study');
+        }
+      })
+      .catch(error => {
+        console.error('Error saving study:', error);
+      })
+      .finally(() => {
+        setIsSaving(false);
       });
-
-      if (response.ok) {
-        router.push('/admin');
-      }
-    } catch (error) {
-      console.error('Error saving study:', error);
-    } finally {
-      setIsSaving(false);
-    }
   };
 
   if (isLoading) {

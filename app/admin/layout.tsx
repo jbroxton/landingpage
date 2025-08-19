@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -17,15 +17,7 @@ export default function AdminLayout({
   const pathname = usePathname();
   const isLoginPage = pathname === '/admin/login';
 
-  useEffect(() => {
-    if (!isLoginPage) {
-      checkAuth();
-    } else {
-      setIsLoading(false);
-    }
-  }, [pathname]);
-
-  const checkAuth = async () => {
+  const checkAuth = useCallback(async () => {
     try {
       const savedAuth = localStorage.getItem('adminAuth');
       
@@ -51,7 +43,15 @@ export default function AdminLayout({
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [router]);
+
+  useEffect(() => {
+    if (!isLoginPage) {
+      checkAuth();
+    } else {
+      setIsLoading(false);
+    }
+  }, [pathname, isLoginPage, checkAuth]);
 
   const handleLogout = () => {
     localStorage.removeItem('adminAuth');
