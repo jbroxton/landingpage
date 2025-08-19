@@ -99,7 +99,7 @@ export default function AdminDashboard() {
           <p className="text-gray-400 mt-1">Manage your UX research studies</p>
         </div>
         <Button
-          onClick={() => router.push('/admin/studies/new')}
+          onClick={() => router.push('/studies/new')}
           className="bg-purple-600 hover:bg-purple-700"
         >
           Create Study
@@ -163,7 +163,7 @@ export default function AdminDashboard() {
                       <Button
                         size="sm"
                         variant="ghost"
-                        onClick={() => router.push(`/admin/studies/${study.id}`)}
+                        onClick={() => router.push(`/studies/${study.id}`)}
                         className="text-gray-300 hover:text-white hover:bg-[rgba(255,255,255,0.1)]"
                       >
                         Edit
@@ -171,7 +171,7 @@ export default function AdminDashboard() {
                       <Button
                         size="sm"
                         variant="ghost"
-                        onClick={() => router.push(`/admin/studies/${study.id}/signups`)}
+                        onClick={() => router.push(`/studies/${study.id}/signups`)}
                         className="text-gray-300 hover:text-white hover:bg-[rgba(255,255,255,0.1)]"
                       >
                         Signups
