@@ -168,9 +168,14 @@ export default function Home({
               <p className="text-lg md:text-xl text-gray-300 mb-8 mx-auto">
                 Speqq brings your roadmaps, tasks, and team collaboration into a single, streamlined platform that adapts to how you work.
               </p>
-              <Button asChild size="lg" className="animate-pulse mb-14">
-                <Link href="#contact">Join Our Waitlist</Link>
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-14">
+                <Button asChild size="lg" className="animate-pulse">
+                  <Link href="#contact">Join Our Waitlist</Link>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="border-purple-500/30 text-white hover:bg-purple-500/10">
+                  <Link href="/studies">Participate in Studies</Link>
+                </Button>
+              </div>
               
               {/* Feature icons in a row - moved from features section */}
               <motion.div
