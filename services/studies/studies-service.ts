@@ -68,8 +68,9 @@ export async function createStudy(input: CreateStudyInput) {
     VALUES (
       ${input.name}, ${input.description}, ${input.user_type}, 
       ${input.location}, ${input.status}, ${input.participant_limit || null},
-      ${input.calendly_link || null}, ${input.start_date || null}, 
-      ${input.end_date || null}
+      ${input.calendly_link || null}, 
+      ${!input.start_date || input.start_date === '' ? null : input.start_date}, 
+      ${!input.end_date || input.end_date === '' ? null : input.end_date}
     )
     RETURNING *
   `;
@@ -87,8 +88,8 @@ export async function updateStudy(id: number, input: CreateStudyInput) {
       status = ${input.status},
       participant_limit = ${input.participant_limit || null},
       calendly_link = ${input.calendly_link || null},
-      start_date = ${input.start_date || null},
-      end_date = ${input.end_date || null},
+      start_date = ${!input.start_date || input.start_date === '' ? null : input.start_date},
+      end_date = ${!input.end_date || input.end_date === '' ? null : input.end_date},
       updated_at = CURRENT_TIMESTAMP
     WHERE id = ${id}
     RETURNING *
