@@ -171,7 +171,7 @@ export default function StudyDetailPage() {
                         onClick={() => router.push('/studies')}
                         className="bg-purple-600 hover:bg-purple-700"
                       >
-                        Done - View All Studies
+                        View All Studies
                       </Button>
                     </div>
                   </CardContent>
